@@ -1,0 +1,63 @@
+﻿@model Employee_Managment.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h2>Edit Employee</h2>
+
+<form method="post" asp-controller="employees" asp-action="Edit">
+    <div class="form-group">
+        <label for="Name" class="control-label">Name</label>
+        <input type="text" id="Name" name="Name" class="form-control" value="@Model.Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Department" class="control-label">Department</label>
+        <input type="text" id="Department" name="Department" class="form-control" value="@Model.Department" />
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Position" class="control-label">Position</label>
+        <input type="text" id="Position" name="Position" class="form-control" value="@Model.Position" />
+        <span asp-validation-for="Position" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="DateOfBirth" class="control-label">Date of Birth</label>
+        <input type="date" id="DateOfBirth" name="DateOfBirth" class="form-control" value="@Model.DateOfBirth?.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="PhoneNumber" class="control-label">Phone Number</label>
+        <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" value="@Model.PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Email" class="control-label">Email</label>
+        <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+@*     <div class="form-group">
+        <label for="UserName" class="control-label">User Name</label>
+        <input type="text" id="UserName" name="Credentials.UserName" class="form-control" value="@Model.Credentials?.UserName" />
+        <span asp-validation-for="Credentials.UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Password" class="control-label">Password</label>
+        <input type="password" id="Password" name="Credentials.Password" class="form-control" value="@Model.Credentials?.Password" />
+        <span asp-validation-for="Credentials.Password" class="text-danger"></span>
+    </div> *@
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Employee_Managment.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee Index";
+}
+
+<h2>Employee List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Position</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Department</td>
+                <td>@employee.Position</td>
+                <td>@employee.Email</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@employee.Id">Edit</a> |
+                    <a asp-controller="employees" asp-action="Delete" asp-route-employeeid="@employee.Id">Delete</a>
+                    <a class="btn btn-link text-decoration-none" asp-controller="credentials" asp-action="edit" asp-route-id="@employee.Id">
+                        Edit credentials
+                        <i class="fa-solid fa-key fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Add" class="btn btn-primary">Add New Employee</a>
