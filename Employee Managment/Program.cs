@@ -17,6 +17,19 @@ namespace Employee_Managment
             builder.Services.AddScoped<CredentialsRepository>();
             builder.Services.AddScoped<StatisticsRepository>();
 
+            builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+            {
+                options.Cookie.Name = "MyCookieAuth";
+                options.LoginPath = "/access/login";
+                options.AccessDeniedPath = "/access/error";
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+                options.AddPolicy("Employee", policy => policy.RequireClaim("Employee"));
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,6 +44,8 @@ namespace Employee_Managment
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

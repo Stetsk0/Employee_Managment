@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Employee_Managment</RootNamespace>
+    <UserSecretsId>9946cb7b-bb65-489f-8c38-4fc577cdb030</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,9 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Access\" />
     <Folder Include="Views\Dashboard\" />
-    <Folder Include="Views\Statistics\" />
   </ItemGroup>
 
 </Project>

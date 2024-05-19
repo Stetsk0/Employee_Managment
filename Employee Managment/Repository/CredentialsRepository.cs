@@ -35,7 +35,6 @@ namespace Employee_Managment.Repository
             }
         }
 
-
         public Credentials? GetCredentialsById(int employeeId)
         {
             var credentials = _context.Credentials.FirstOrDefault(c => c.Id == employeeId);

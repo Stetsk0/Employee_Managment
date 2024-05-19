@@ -74,13 +74,10 @@ namespace Employee_Managment.Repository
 
         public void DeleteEmployee(int employeeId)
         {
-            // Находим сотрудника по Id
             var employee = _context.Employees.Include(e => e.Credentials).Include(s => s.Statistics).FirstOrDefault(x => x.Id == employeeId);
 
-            // Если сотрудник найден
             if (employee != null)
             {
-                // Удаляем учетные данные сотрудника, если они существуют
                 if (employee.Credentials != null)
                 {
                     _context.Credentials.Remove(employee.Credentials);
@@ -91,10 +88,8 @@ namespace Employee_Managment.Repository
                     _context.Statistics.Remove(employee.Statistics);
                 }
 
-                // Удаляем сотрудника из базы данных
                 _context.Employees.Remove(employee);
 
-                // Сохраняем изменения
                 _context.SaveChanges();
             }
         }

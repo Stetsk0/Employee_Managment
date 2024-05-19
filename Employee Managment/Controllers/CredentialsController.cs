@@ -1,9 +1,11 @@
 ﻿using Employee_Managment.Models;
 using Employee_Managment.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Managment.Controllers
 {
+    [Authorize(Policy = "Admin")]
     public class CredentialsController : Controller
     {
         private readonly CredentialsRepository _credentialsRepository;
@@ -13,7 +15,6 @@ namespace Employee_Managment.Controllers
             _credentialsRepository = credentialsRepository;
         }
 
-        // GET: Credentials/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -26,13 +27,12 @@ namespace Employee_Managment.Controllers
             {
                 return NotFound();
             }
+            credentials.Password = "";
 
             return View(credentials);
         }
 
-        // POST: Credentials/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Credentials credentials)
         {
             if (ModelState.IsValid)

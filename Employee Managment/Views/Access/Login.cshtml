@@ -1,0 +1,34 @@
+﻿@model Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+    <div class="container border" style="padding:20px">
+        <form asp-controller="Access" asp-action="Login" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <div class="row">
+                <div class="col-2">
+                    <label asp-for="Credential.UserName"></label>
+                </div>
+            </div>
+            <div class="">
+                <input type="text" asp-for="Credential.UserName" class="form-control" />
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <label asp-for="Credential.Password"></label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <input type="password" asp-for="Credential.Password" class="form-control" autocomplete="off" />
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <input type="submit" class="btn btn-primary" value="Login" />
+                </div>
+            </div>
+            <div class="col-5">
+            </div>
+        </form>
+    </div>

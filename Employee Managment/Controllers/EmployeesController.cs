@@ -7,7 +7,7 @@ using NuGet.Protocol.Core.Types;
 
 namespace Employee_Managment.Controllers
 {
-    //[Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = "Admin")]
     public class EmployeesController : Controller
     {
         private readonly EmployeesRepository _employeesRepository;
@@ -15,7 +15,7 @@ namespace Employee_Managment.Controllers
         {
             _employeesRepository = employeesRepository;
         }
-        // GET: EmployeeController
+
         public ActionResult Index()
         {
             var employees = _employeesRepository.GetEmployees();
@@ -23,7 +23,6 @@ namespace Employee_Managment.Controllers
             return View(employees);
         }
 
-        // GET: EmployeeController/Add
         public ActionResult Add()
         {
             ViewBag.Action = "add";
@@ -31,9 +30,7 @@ namespace Employee_Managment.Controllers
             return View();
         }
 
-        // POST: EmployeeController/Add
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Add(Employee employee)
         {
             if (ModelState.IsValid)
@@ -45,7 +42,6 @@ namespace Employee_Managment.Controllers
             return View(employee);
         }
 
-        // GET: EmployeeController/Edit/5
         public ActionResult Edit(int? id)
         {
             ViewBag.Action = "edit";
@@ -56,9 +52,7 @@ namespace Employee_Managment.Controllers
             return View(employee);
         }
 
-        // POST: EmployeeController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Employee employee)
         {
 
@@ -72,9 +66,6 @@ namespace Employee_Managment.Controllers
 
         }
 
-        // POST: EmployeeController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult Delete(int employeeId)
         {
             _employeesRepository.DeleteEmployee(employeeId);

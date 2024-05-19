@@ -1,12 +1,51 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Employee_Managment.Models;
+using Employee_Managment.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Managment.Controllers
 {
+    [Authorize(Policy = "Admin")]
     public class StatisticsController : Controller
     {
-        public IActionResult Index()
+        private readonly StatisticsRepository _statisticsRepository;
+
+        public StatisticsController(StatisticsRepository statisticsRepository)
         {
-            return View();
+            _statisticsRepository = statisticsRepository;
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var statistics = _statisticsRepository.GetStatisticsById(id.Value);
+            if (statistics == null)
+            {
+                return NotFound();
+            }
+
+            return View(statistics);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, [Bind("Id,Salary,QA,Bonus,WorkedHours,VacationDays,SickDays")] Statistics statistics)
+        {
+            if (id != statistics.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _statisticsRepository.UpdateStatistics(statistics);
+                return RedirectToAction("Index", "Employees");
+            }
+
+            return View(statistics);
         }
     }
 }
