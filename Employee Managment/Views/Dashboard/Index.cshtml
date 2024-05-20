@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Employee_Managment.Models.Statistics>
+
+@{
+    ViewData["Title"] = "View Statistics";
+}
+
+<h2>View Statistics</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Salary</th>
+            <th>QA</th>
+            <th>Bonus</th>
+            <th>Worked Hours</th>
+            <th>Vacation Days</th>
+            <th>Sick Days</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Salary</td>
+                <td>@item.QA</td>
+                <td>@item.Bonus</td>
+                <td>@item.WorkedHours</td>
+                <td>@item.VacationDays</td>
+                <td>@item.SickDays</td>
+            </tr>
+        }
+    </tbody>
+</table>

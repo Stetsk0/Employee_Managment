@@ -17,6 +17,7 @@ namespace Employee_Managment.Models
         [Display(Name = "Bonus")]
         public string? Bonus { get; set; } = string.Empty;
 
+        [Required]
         [Display(Name = "Worked hours")]
         public int WorkedHours { get; set; }
 

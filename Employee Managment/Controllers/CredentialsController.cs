@@ -15,7 +15,7 @@ namespace Employee_Managment.Controllers
             _credentialsRepository = credentialsRepository;
         }
 
-        public ActionResult Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -33,7 +33,7 @@ namespace Employee_Managment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Credentials credentials)
+        public IActionResult Edit(Credentials credentials)
         {
             if (ModelState.IsValid)
             {

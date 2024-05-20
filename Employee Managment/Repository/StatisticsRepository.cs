@@ -13,10 +13,13 @@ namespace Employee_Managment.Repository
             _context = context;
         }
 
-        public Statistics GetStatisticsById(int id)
+        public List<Statistics> GetStatistics()
         {
-            return _context.Statistics.FirstOrDefault(s => s.Id == id);
+            var statistics = _context.Statistics.ToList();
+            return statistics;
         }
+
+        public Statistics? GetStatisticsById(int id) => _context.Statistics.FirstOrDefault(s => s.Id == id);
 
         public void UpdateStatistics(Statistics statistics)
         {

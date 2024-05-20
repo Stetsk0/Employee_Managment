@@ -93,15 +93,5 @@ namespace Employee_Managment.Repository
                 _context.SaveChanges();
             }
         }
-
-        public void UpdateEmployeeCredentials(int employeeId, Employee employee)
-        {
-            
-        }
-
-        public void UpdateStatistics(int employeeId, Employee employee)
-        {
-            
-        }
     }
 }

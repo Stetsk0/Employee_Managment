@@ -16,14 +16,14 @@ namespace Employee_Managment.Controllers
             _employeesRepository = employeesRepository;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var employees = _employeesRepository.GetEmployees();
 
             return View(employees);
         }
 
-        public ActionResult Add()
+        public IActionResult Add()
         {
             ViewBag.Action = "add";
 
@@ -31,7 +31,7 @@ namespace Employee_Managment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Employee employee)
+        public IActionResult Add(Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +42,7 @@ namespace Employee_Managment.Controllers
             return View(employee);
         }
 
-        public ActionResult Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             ViewBag.Action = "edit";
 
@@ -53,7 +53,7 @@ namespace Employee_Managment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Employee employee)
+        public IActionResult Edit(Employee employee)
         {
 
             if (ModelState.IsValid)
@@ -66,7 +66,7 @@ namespace Employee_Managment.Controllers
 
         }
 
-        public ActionResult Delete(int employeeId)
+        public IActionResult Delete(int employeeId)
         {
             _employeesRepository.DeleteEmployee(employeeId);
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Employee_Managment</title>
+    <title>@ViewData["Title"] - Employee Managment</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Employee_Managment.styles.css" asp-append-version="true" />
@@ -21,18 +21,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="home" asp-action="index">Home</a>
+                            <a class="nav-link text-light" asp-controller="home" asp-action="index"> <i class="fa-solid fa-house"> </i> Home</a>
                         </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="employees" asp-action="index">Employees</a>
+                                <a class="nav-link text-light" asp-controller="employees" asp-action="index"> <i class="fa-solid fa-users"> </i> Employees</a>
                             </li>
                         }
                         @if (User.IsInRole("Employee"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="dashboard" asp-action="index">Dashboard</a>
+                                <a class="nav-link text-light" asp-controller="dashboard" asp-action="index"> <i class="fa-solid fa-chart-simple"> </i> Dashboard</a>
                             </li>
                         }
                     </ul>
