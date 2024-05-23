@@ -17,6 +17,8 @@ namespace Employee_Managment
             builder.Services.AddScoped<CredentialsRepository>();
             builder.Services.AddScoped<StatisticsRepository>();
 
+            builder.Services.AddHttpContextAccessor();
+
             builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
             {
                 options.Cookie.Name = "MyCookieAuth";
@@ -52,7 +54,9 @@ namespace Employee_Managment
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            app.MapControllerRoute(
+                name: "profile",
+        pattern: "{controller=Profile}/{action=Index}/{id?}");
             app.Run();
         }
     }

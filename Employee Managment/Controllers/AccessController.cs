@@ -42,6 +42,7 @@ namespace Employee_Managment.Controllers
                 {
                     new Claim(ClaimTypes.Name, employee.Name),
                     new Claim(ClaimTypes.Role, "Employee"),
+                    new Claim("EmployeeId", employee.Id.ToString()),
                     new Claim("Employee", "Employee")
                 };
 

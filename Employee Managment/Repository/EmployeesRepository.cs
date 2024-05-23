@@ -46,7 +46,7 @@ namespace Employee_Managment.Repository
             var employee = _context.Employees.FirstOrDefault(c => c.Id == employeeId);
             if (employee != null)
             {
-                return new Employee { Id = employee.Id, Name = employee.Name, Department = employee.Department, DateOfBirth = employee.DateOfBirth, PhoneNumber = employee.PhoneNumber, Email = employee.Email, Position = employee.Position };
+                return new Employee { Id = employee.Id, Name = employee.Name, Department = employee.Department, DateOfBirth = employee.DateOfBirth, PhoneNumber = employee.PhoneNumber, Email = employee.Email, Position = employee.Position, AvatarFileName = employee.AvatarFileName };
             }
 
             return null;
@@ -66,6 +66,7 @@ namespace Employee_Managment.Repository
                 employeeToUpdate.Email = employee.Email;
                 employeeToUpdate.PhoneNumber = employee.PhoneNumber;
                 employeeToUpdate.Position = employee.Position;
+                employeeToUpdate.AvatarFileName = employee.AvatarFileName;
 
                 _context.SaveChanges();
             }

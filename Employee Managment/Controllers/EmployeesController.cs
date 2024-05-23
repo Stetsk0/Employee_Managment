@@ -19,7 +19,10 @@ namespace Employee_Managment.Controllers
         public IActionResult Index()
         {
             var employees = _employeesRepository.GetEmployees();
-
+            if (employees != null)
+            {
+                
+            }
             return View(employees);
         }
 

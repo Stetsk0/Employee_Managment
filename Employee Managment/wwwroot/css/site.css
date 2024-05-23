@@ -1,22 +1,53 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+.widget {
+    border-radius: 1rem;
+    background-color: #1a222b;
+}
+
+    .widget.stats > div:first-child {
+        padding: 1rem;
+        background-color: #222b33;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+    }
+
+        .widget.stats > div:first-child i {
+            font-weight: bold;
+        }
+
+    .widget.salary > div:first-child {
+        background-color: #222b33;
+        color: #65da41;
+    }
+
+    .widget.qa > div:first-child {
+        background-color: #222b33;
+        color: #ff4e48;
+    }
+
+    .widget.bonus > div:first-child {
+        background-color: #222b33;
+        color: #2aa1ff;
+    }

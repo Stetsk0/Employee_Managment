@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var userClaims = HttpContextAccessor.HttpContext.User.Claims;
+    var employeeIdClaim = userClaims.FirstOrDefault(c => c.Type == "EmployeeId");
+    var employeeId = employeeIdClaim?.Value;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -32,7 +39,10 @@
                         @if (User.IsInRole("Employee"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="dashboard" asp-action="index"> <i class="fa-solid fa-chart-simple"> </i> Dashboard</a>
+                                <a class="nav-link text-light" asp-controller="dashboard" asp-action="index" asp-route-id="@employeeId"> <i class="fa-solid fa-chart-simple"> </i> Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="profile" asp-action="index" asp-route-id="@employeeId"> <i class="fa-solid fa-user"> </i> Profile</a>
                             </li>
                         }
                     </ul>
