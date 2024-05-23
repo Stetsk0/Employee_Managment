@@ -16,6 +16,7 @@ namespace Employee_Managment
             builder.Services.AddScoped<EmployeesRepository>();
             builder.Services.AddScoped<CredentialsRepository>();
             builder.Services.AddScoped<StatisticsRepository>();
+            builder.Services.AddScoped<VacationRepository>();
 
             builder.Services.AddHttpContextAccessor();
 

@@ -7,36 +7,11 @@
     var employeeId = employeeIdClaim?.Value;
 } *@
 @{
-    ViewData["Title"] = "View Statistics";
+    ViewData["Title"] = "Dashboard";
 }
 
-<h2>View Statistics</h2>
+<h2>Dashboard</h2>
 
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>Salary</th>
-            <th>QA</th>
-            <th>Bonus</th>
-            <th>Worked Hours</th>
-            <th>Vacation Days</th>
-            <th>Sick Days</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Salary</td>
-                <td>@item.QA</td>
-                <td>@item.Bonus</td>
-                <td>@item.WorkedHours</td>
-                <td>@item.VacationDays</td>
-                <td>@item.SickDays</td>
-            </tr>
-        }
-    </tbody>
-</table> *@
 
 <div class="row mb-4">
     <div class="col-md-4">

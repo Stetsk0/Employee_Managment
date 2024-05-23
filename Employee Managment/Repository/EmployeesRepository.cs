@@ -27,7 +27,12 @@ namespace Employee_Managment.Repository
                 VacationDays = 0,
                 SickDays = 0
             };
+            //var vacation = new Vacation
+            //{
+            //     NumberOfDays = 0
+            //};
 
+            //employee.Vacation = vacation;
             employee.Statistics = statistics;
 
             _context.Employees.Add(employee);
@@ -88,6 +93,11 @@ namespace Employee_Managment.Repository
                 {
                     _context.Statistics.Remove(employee.Statistics);
                 }
+
+                //if (vacation != null)
+                //{
+                //    _context.Vacations.Remove(vacation);
+                //}
 
                 _context.Employees.Remove(employee);
 

@@ -1,0 +1,51 @@
+﻿@* @model Vacation
+@{
+    ViewData["Title"] = "Vacation";
+    Layout = "_Layout";
+}
+
+<h2>Request Vacation</h2>
+
+<form asp-action="RequestVacation" asp-controller="vacation" method="post">
+    <input type="hidden" asp-for="Id" value="@ViewBag.EmployeeId" />
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label"></label>
+        <input asp-for="StartDate" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label"></label>
+        <input asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfDays" class="control-label"></label>
+        <input asp-for="NumberOfDays" class="form-control" readonly />
+        <span asp-validation-for="NumberOfDays" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <p>Available Vacation Days: @ViewBag.AvailableVacationDays</p>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Request Vacation</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(function () {
+            $('input[name="StartDate"], input[name="EndDate"]').change(function () {
+                var startDate = new Date($('input[name="StartDate"]').val());
+                var endDate = new Date($('input[name="EndDate"]').val());
+                if (startDate && endDate && startDate <= endDate) {
+                    var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+                    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1; // Including both start and end dates
+                    $('input[name="NumberOfDays"]').val(diffDays);
+                } else {
+                    $('input[name="NumberOfDays"]').val(0);
+                }
+            });
+        });
+    </script>
+} *@

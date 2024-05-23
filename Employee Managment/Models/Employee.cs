@@ -30,6 +30,7 @@ namespace Employee_Managment.Models
         public Credentials? Credentials { get; set; }
 
         public Statistics? Statistics { get; set; }
+        //public Vacation? Vacation { get; set; }
         public string? AvatarFileName { get; set; } = string.Empty;
     }
 }

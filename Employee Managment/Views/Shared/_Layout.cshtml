@@ -39,10 +39,13 @@
                         @if (User.IsInRole("Employee"))
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="profile" asp-action="index" asp-route-id="@employeeId"> <i class="fa-solid fa-user"> </i> Profile</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-light" asp-controller="dashboard" asp-action="index" asp-route-id="@employeeId"> <i class="fa-solid fa-chart-simple"> </i> Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="profile" asp-action="index" asp-route-id="@employeeId"> <i class="fa-solid fa-user"> </i> Profile</a>
+                                <a class="nav-link text-light" asp-controller="vacation" asp-action="index" asp-route-id="@employeeId"> <i class="fa-solid fa-umbrella-beach"> </i> Vacation</a>
                             </li>
                         }
                     </ul>
