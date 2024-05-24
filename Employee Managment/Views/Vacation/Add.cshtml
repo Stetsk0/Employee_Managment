@@ -1,49 +1,29 @@
-﻿@* @model Vacation
-
-<h1>Add Vacation</h1>
-
-<form asp-action="add" asp-controller="vacation">
-    <div class="form-group">
-        <label asp-for="VacationDays" class="control-label"></label>
-        <input asp-for="VacationDays" class="form-control" />
-        <span asp-validation-for="VacationDays" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="VacationType" class="control-label"></label>
-        <select asp-for="VacationType" class="form-control" asp-items="Html.GetEnumSelectList<VacationType>()"></select>
-        <span asp-validation-for="VacationType" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-</form> *@
-@model Employee_Managment.Models.Vacation
+﻿@model Employee_Managment.Models.Vacation
 
 @{
     ViewData["Title"] = "Add Vacation";
 }
 
-<h2>Add Vacation</h2>
+<h2>@ViewData["Title"] for Employee @ViewBag.EmployeeName</h2>
 
-<form asp-action="Add">
+<form asp-action="Add" method="post">
+    <input type="hidden" asp-for="EmployeeId" />
     <div class="form-group">
-        <label asp-for="VacationDays" class="control-label"></label>
+        <label asp-for="VacationDays"></label>
         <input asp-for="VacationDays" class="form-control" />
         <span asp-validation-for="VacationDays" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="VacationType" class="control-label"></label>
+        <label asp-for="VacationType"></label>
         <select asp-for="VacationType" class="form-control">
-            <option value="">-- Select Vacation Type --</option>
-            @foreach (var value in Enum.GetValues(typeof(Employee_Managment.Models.VacationType)))
+            @foreach (var type in Enum.GetValues(typeof(Employee_Managment.Models.VacationType)))
             {
-                <option value="@value">@value</option>
+                <option value="@type">@type</option>
             }
         </select>
         <span asp-validation-for="VacationType" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <input type="submit" value="Add" class="btn btn-primary" />
-    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
 </form>
+
+<a href="@Url.Action("Index", new { employeeId = Model.EmployeeId })">Back to List</a>

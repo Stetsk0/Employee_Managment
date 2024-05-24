@@ -12,6 +12,8 @@ namespace Employee_Managment.Models
 
         [Display(Name = "Vacation Type")]
         public VacationType VacationType { get; set; }
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
     }
     public enum VacationType
     {

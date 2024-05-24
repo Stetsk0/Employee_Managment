@@ -96,58 +96,142 @@ namespace Employee_Managment.Controllers
 
         //    return RedirectToAction(nameof(Index));
         //}
-        public IActionResult Index()
+        //222222222222222
+        //public IActionResult Index()
+        //{
+        //    var vacations = _vacationRepository.GetAllVacations();
+        //    return View(vacations);
+        //}
+
+        //public IActionResult Add()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public IActionResult Add(Vacation vacation)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _vacationRepository.AddVacation(vacation);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(vacation);
+        //}
+
+        //public IActionResult Edit(int id)
+        //{
+        //    var vacation = _vacationRepository.GetVacationsByEmployeeId(id);
+        //    if (vacation == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(vacation);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(Vacation vacation)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _vacationRepository.UpdateVacation(vacation);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(vacation);
+        //}
+
+        //public IActionResult Delete(int id)
+        //{
+        //    var vacation = _vacationRepository.GetVacationsByEmployeeId(id);
+        //    if (vacation == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _vacationRepository.DeleteVacation(id);
+        //    return RedirectToAction("Index");
+        //}
+
+        public IActionResult Index(int employeeId)
         {
-            var vacations = _vacationRepository.GetAllVacations();
+            IEnumerable<Vacation> vacations = _vacationRepository.GetVacationsByEmployeeId(employeeId);
+            ViewBag.EmployeeId = employeeId;
             return View(vacations);
         }
 
-        public IActionResult Add()
+        public IActionResult Add(int employeeId)
         {
-            return View();
+            var employee = _employeesRepository.GetEmployeeById(employeeId);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            var model = new Vacation { Employee = employee };
+            ViewBag.EmployeeName = employee.Name;
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Add(Vacation vacation)
         {
+            if (vacation.Employee == null || vacation.Employee.Id == 0)
+            {
+                ModelState.AddModelError("Employee", "Employee is required.");
+            }
+
             if (ModelState.IsValid)
             {
-                _vacationRepository.AddVacation(vacation);
-                return RedirectToAction("Index");
+                var employee = _employeesRepository.GetEmployeeById(vacation.Employee.Id);
+                if (employee == null)
+                {
+                    ModelState.AddModelError("Employee", "Employee not found.");
+                }
+                else
+                {
+                    vacation.Employee = employee;
+                    _vacationRepository.AddVacation(vacation);
+                    return RedirectToAction("Index", new { employeeId = vacation.Employee.Id });
+                }
             }
+            ViewBag.EmployeeName = vacation.Employee?.Name;
             return View(vacation);
         }
 
         public IActionResult Edit(int id)
         {
-            var vacation = _vacationRepository.GetVacation(id);
+            Vacation vacation = _vacationRepository.GetVacation(id);
             if (vacation == null)
             {
                 return NotFound();
             }
+            ViewBag.EmployeeName = vacation.Employee.Name;
             return View(vacation);
         }
 
         [HttpPost]
         public IActionResult Edit(Vacation vacation)
         {
+            if (vacation.Employee == null || vacation.Employee.Id == 0)
+            {
+                ModelState.AddModelError("Employee", "Employee is required.");
+            }
+
             if (ModelState.IsValid)
             {
-                _vacationRepository.UpdateVacation(vacation);
-                return RedirectToAction("Index");
+                var employee = _employeesRepository.GetEmployeeById(vacation.Employee.Id);
+                if (employee == null)
+                {
+                    ModelState.AddModelError("Employee", "Employee not found.");
+                }
+                else
+                {
+                    vacation.Employee = employee;
+                    _vacationRepository.UpdateVacation(vacation);
+                    return RedirectToAction("Index", new { employeeId = vacation.Employee.Id });
+                }
             }
+            ViewBag.EmployeeName = vacation.Employee?.Name;
             return View(vacation);
-        }
-
-        public IActionResult Delete(int id)
-        {
-            var vacation = _vacationRepository.GetVacation(id);
-            if (vacation == null)
-            {
-                return NotFound();
-            }
-            _vacationRepository.DeleteVacation(id);
-            return RedirectToAction("Index");
         }
     }
 }

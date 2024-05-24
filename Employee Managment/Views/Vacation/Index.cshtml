@@ -1,51 +1,14 @@
-﻿@* @model IEnumerable<Employee_Managment.Models.Vacation> *@
-@* @model Vacation
+﻿@model IEnumerable<Employee_Managment.Models.Vacation>
 @{
-    
+    ViewData["Title"] = "Vacation List";
 }
 
-<h1>Vacations for Employee</h1>
+<h2>@ViewData["Title"] for Employee @ViewBag.EmployeeId</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Vacation Days</th>
-            <th>Vacation Type</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-       
-            <tr>
-                <td>@Model.VacationDays</td>
-            <td>@Model.VacationType</td>
-                <td>
-                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-                </td>
-            </tr>
-        
-    </tbody>
-</table>
-
-<a asp-action="Add">Add New Vacation</a>
- *@
- @model IEnumerable<Employee_Managment.Models.Vacation>
-
-@{
-    ViewData["Title"] = "Vacations";
-}
-
-<h2>Vacations</h2>
-
-<p>
-    <a asp-action="Add">Add New Vacation</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
+            <th>ID</th>
             <th>Vacation Days</th>
             <th>Vacation Type</th>
             <th>Actions</th>
@@ -59,10 +22,11 @@
                 <td>@vacation.VacationDays</td>
                 <td>@vacation.VacationType</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@vacation.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@vacation.Id">Delete</a>
+                    <a href="@Url.Action("Edit", new { id = vacation.Id })">Edit</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<a href="@Url.Action("Add", new { employeeId = ViewBag.EmployeeId })" class="btn btn-primary">Add Vacation</a>
