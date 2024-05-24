@@ -1,8 +1,8 @@
-﻿@model Employee_Managment.Models.Vacation
+﻿@* @model Vacation
 
-<h1>@ViewBag.Action Vacation</h1>
+<h1>Add Vacation</h1>
 
-<form asp-action="@ViewBag.Action">
+<form asp-action="add" asp-controller="vacation">
     <div class="form-group">
         <label asp-for="VacationDays" class="control-label"></label>
         <input asp-for="VacationDays" class="form-control" />
@@ -13,7 +13,37 @@
         <select asp-for="VacationType" class="form-control" asp-items="Html.GetEnumSelectList<VacationType>()"></select>
         <span asp-validation-for="VacationType" class="text-danger"></span>
     </div>
+
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form> *@
+@model Employee_Managment.Models.Vacation
+
+@{
+    ViewData["Title"] = "Add Vacation";
+}
+
+<h2>Add Vacation</h2>
+
+<form asp-action="Add">
+    <div class="form-group">
+        <label asp-for="VacationDays" class="control-label"></label>
+        <input asp-for="VacationDays" class="form-control" />
+        <span asp-validation-for="VacationDays" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VacationType" class="control-label"></label>
+        <select asp-for="VacationType" class="form-control">
+            <option value="">-- Select Vacation Type --</option>
+            @foreach (var value in Enum.GetValues(typeof(Employee_Managment.Models.VacationType)))
+            {
+                <option value="@value">@value</option>
+            }
+        </select>
+        <span asp-validation-for="VacationType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-primary" />
     </div>
 </form>

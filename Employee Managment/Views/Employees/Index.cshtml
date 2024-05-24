@@ -40,6 +40,11 @@
                         <i class="fa-solid fa-chart-simple fa-lg"></i>
                     </a>
                     |
+                    <a class="btn btn-link text-decoration-none" asp-controller="vacation" asp-action="index" asp-route-id="@employee.Id">
+                        Vacation
+                        <i class="fa-solid fa-umbrella-beach fa-lg"></i> 
+                    </a>
+                    |
                     <a class="btn btn-link text-decoration-none" asp-controller="employees" asp-action="delete" asp-route-employeeid="@employee.Id" onclick="return confirmDelete()">
                         Delete
                         <i class="fa-solid fa-trash fa-lg"></i>

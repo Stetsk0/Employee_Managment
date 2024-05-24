@@ -33,10 +33,7 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="employees" asp-action="index"> <i class="fa-solid fa-users"> </i> Employees</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="vacation" asp-action="index"> <i class="fa-solid fa-umbrella-beach"> </i> Vacation</a>
+                                <a class="nav-link text-light" asp-controller="employees" asp-action="index" asp-route-empoloyeeId="@ViewBag.EmployeeId"> <i class="fa-solid fa-users"> </i> Employees</a>
                             </li>
                         }
                         @if (User.IsInRole("Employee"))

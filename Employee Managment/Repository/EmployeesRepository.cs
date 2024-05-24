@@ -25,12 +25,8 @@ namespace Employee_Managment.Repository
                 Bonus = "0",
                 WorkedHours = 0
             };
-            //var vacation = new Vacation
-            //{
-            //     NumberOfDays = 0
-            //};
 
-            //employee.Vacation = vacation;
+            employee.Vacation = new List<Vacation>();
             employee.Statistics = statistics;
 
             _context.Employees.Add(employee);
@@ -40,8 +36,8 @@ namespace Employee_Managment.Repository
 
         public List<Employee> GetEmployees()
         {
-            var employees = _context.Employees.ToList();
-            return employees;
+             return _context.Employees.ToList();
+             
         }
 
         public Employee? GetEmployeeById(int employeeId)
