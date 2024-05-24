@@ -2,78 +2,79 @@
 using Employee_Managment.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace Employee_Managment.Controllers
 {
-    //[Authorize(Policy = "Employee")]
-    //public class VacationController : Controller
-    //{
-    //    private readonly VacationRepository _vacationRepository;
-    //    private readonly EmployeesRepository _employeesRepository;
+    [Authorize(Policy = "Admin")]
+    public class VacationController : Controller
+    {
+        private readonly VacationRepository _vacationRepository;
 
-    //    public VacationController(VacationRepository vacationRepository, EmployeesRepository employeesRepository)
-    //    {
-    //        _vacationRepository = vacationRepository;
-    //        _employeesRepository = employeesRepository;
-    //    }
+        public VacationController(VacationRepository vacationRepository)
+        {
+            _vacationRepository = vacationRepository;
+        }
 
-    //    public IActionResult Index(int id)
-    //    {
-    //        var employee = _employeesRepository.GetEmployeeById(id);
-    //        if (employee == null)
-    //        {
-    //            return NotFound();
-    //        }
+        public IActionResult Index()
+        {
+            var vacations = _vacationRepository.GetVacations();
+            return View(vacations);
+        }
 
-    //        var vacation = employee.Vacation;
-    //        return View(vacation);
-    //    }
+        public IActionResult Add()
+        {
+            ViewBag.Action = "Add";
+            return View(new Vacation());
+        }
 
-    //    public IActionResult RequestVacation(int employeeId)
-    //    {
-    //        var employee = _employeesRepository.GetEmployeeById(employeeId);
-    //        if (employee == null)
-    //        {
-    //            return NotFound();
-    //        }
+        [HttpPost]
+        public IActionResult Add(Vacation vacation)
+        {
+            if (ModelState.IsValid)
+            {
+                _vacationRepository.AddVacation(vacation);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vacation);
+        }
 
-    //        ViewBag.AvailableVacationDays = employee.Statistics?.VacationDays ?? 0;
-    //        ViewBag.EmployeeId = employee.Id;
+        public IActionResult Edit(int id)
+        {
+            ViewBag.Action = "Edit";
+            var vacation = _vacationRepository.GetVacationById(id);
+            if (vacation == null)
+            {
+                return NotFound();
+            }
+            return View(vacation);
+        }
 
-    //        return View();
-    //    }
+        [HttpPost]
+        public IActionResult Edit(Vacation vacation)
+        {
+            if (ModelState.IsValid)
+            {
+                _vacationRepository.UpdateVacation(vacation);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vacation);
+        }
 
-    //    [HttpPost]
-    //    [ValidateAntiForgeryToken]
-    //    public IActionResult RequestVacation(Vacation vacation)
-    //    {
-    //        if (ModelState.IsValid)
-    //        {
-    //            var employee = _employeesRepository.GetEmployeeById(vacation.Id);
-    //            if (employee == null)
-    //            {
-    //                return NotFound();
-    //            }
+        public IActionResult Delete(int id)
+        {
+            var vacation = _vacationRepository.GetVacationById(id);
+            if (vacation == null)
+            {
+                return NotFound();
+            }
+            return View(vacation);
+        }
 
-    //            var availableVacationDays = employee.Statistics?.VacationDays ?? 0;
-    //            vacation.NumberOfDays = (vacation.EndDate - vacation.StartDate).Days + 1;
-    //            if (vacation.NumberOfDays > availableVacationDays)
-    //            {
-    //                ModelState.AddModelError("", "You do not have enough vacation days available.");
-    //                ViewBag.AvailableVacationDays = availableVacationDays;
-    //                return View(vacation);
-    //            }
-
-    //            employee.Statistics.VacationDays -= vacation.NumberOfDays;
-    //            employee.Id = vacation.Id; // Update the vacation property of employee
-    //            _employeesRepository.UpdateEmployee(employee.Id, employee);
-
-    //            return RedirectToAction(nameof(Index), new { employeeId = vacation.Id });
-    //        }
-
-    //        return View(nameof(Index));
-    //    }
-    //}
-
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _vacationRepository.DeleteVacation(id);
+            return RedirectToAction(nameof(Index));
+        }
+    }
 }

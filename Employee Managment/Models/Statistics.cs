@@ -21,12 +21,7 @@ namespace Employee_Managment.Models
         [Display(Name = "Worked hours")]
         public int WorkedHours { get; set; }
 
-        [Display(Name = "Vacation days")]
-        public int VacationDays { get; set; }
-
-        [Display(Name = "Sick days")]
-        public int SickDays { get; set; }
-
+        public Vacation? Vacation { get; set; }
         //public List<string> TrainingCourses { get; set; } = new List<string>();
     }
 }

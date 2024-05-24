@@ -23,9 +23,7 @@ namespace Employee_Managment.Repository
                 Salary = "0",
                 QA = "0",
                 Bonus = "0",
-                WorkedHours = 0,
-                VacationDays = 0,
-                SickDays = 0
+                WorkedHours = 0
             };
             //var vacation = new Vacation
             //{
