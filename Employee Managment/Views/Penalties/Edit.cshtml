@@ -1,0 +1,27 @@
+﻿@model Employee_Managment.Models.Penalty
+@{
+    ViewBag.Title = "Edit Penalty";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="Date"></label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Reason"></label>
+        <input asp-for="Reason" class="form-control" />
+        <span asp-validation-for="Reason" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount"></label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="EmployeeId" />
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Back</a>
+</form>

@@ -6,14 +6,14 @@ namespace Employee_Managment.Models
     public class Vacation
     {
         public int Id { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string? Description { get; set; }
 
-        [Display(Name = "Vacation Days")]
-        public int VacationDays { get; set; }
-
-        [Display(Name = "Vacation Type")]
-        public VacationType VacationType { get; set; }
+        // Внешний ключ к Employee
+        public Employee? Employee { get; set; }
         public int EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+
     }
     public enum VacationType
     {

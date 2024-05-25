@@ -27,16 +27,6 @@ namespace Employee_Managment.Controllers
 
             return View(employee);
         }
-        //public IActionResult Index()
-        //{
-        //    var employee = _employeesRepository.GetEmployees();
-        //    if (employee == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(employee);
-        //}
 
         [HttpPost]
         public async Task<IActionResult> UploadAvatar(int id, IFormFile avatar)

@@ -4,30 +4,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Managment.Repository
 {
-    public class VacationRepository
+    public class VacationsRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly EmployeesRepository _employeesRepository;
 
-        public VacationRepository(ApplicationDbContext context, EmployeesRepository employeesRepository)
+        public VacationsRepository(ApplicationDbContext context, EmployeesRepository employeesRepository)
         {
             _context = context;
             _employeesRepository = employeesRepository;
         }
 
-        public IEnumerable<Vacation> GetAllVacations()
+        public List<Vacation> GetVacationsByEmployeeId(int employeeId)
         {
-            return _context.Vacations.ToList();
+            return _context.Vacations
+                           .Where(v => v.EmployeeId == employeeId)
+                           .ToList();
         }
 
-        public IEnumerable<Vacation> GetVacationsByEmployeeId(int employeeId)
+        public Vacation? GetVacationById(int id)
         {
-            return _context.Vacations.Where(v => v.Id == employeeId).ToList();
-        }
-
-        public Vacation GetVacation(int id)
-        {
-            return _context.Vacations.FirstOrDefault(v => v.Id == id);
+            return _context.Vacations
+                           .Include(v => v.Employee)
+                           .FirstOrDefault(v => v.Id == id);
         }
 
         public void AddVacation(Vacation vacation)
@@ -44,7 +43,7 @@ namespace Employee_Managment.Repository
 
         public void DeleteVacation(int id)
         {
-            var vacation = GetVacation(id);
+            var vacation = _context.Vacations.FirstOrDefault(v => v.Id == id);
             if (vacation != null)
             {
                 _context.Vacations.Remove(vacation);

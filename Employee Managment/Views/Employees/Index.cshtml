@@ -45,6 +45,11 @@
                         <i class="fa-solid fa-umbrella-beach fa-lg"></i> 
                     </a>
                     |
+                    <a class="btn btn-link text-decoration-none" asp-controller="penalties" asp-action="index" asp-route-employeeId="@employee.Id">
+                        Penalty
+                        <i class="fa-regular fa-face-frown"></i>
+                    </a>
+                    |
                     <a class="btn btn-link text-decoration-none" asp-controller="employees" asp-action="delete" asp-route-employeeid="@employee.Id" onclick="return confirmDelete()">
                         Delete
                         <i class="fa-solid fa-trash fa-lg"></i>

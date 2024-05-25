@@ -1,0 +1,22 @@
+﻿@model Employee_Managment.Models.Vacation
+@{
+    ViewBag.Title = "Delete Vacation";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Are you sure you want to delete this vacation?</h4>
+    <div>
+        <h5>@Model.Description</h5>
+        <p>
+            <strong>Start Date:</strong> @Model.StartDate.ToShortDateString()<br />
+            <strong>End Date:</strong> @Model.EndDate.ToShortDateString()
+        </p>
+    </div>
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Back</a>
+    </form>
+</div>

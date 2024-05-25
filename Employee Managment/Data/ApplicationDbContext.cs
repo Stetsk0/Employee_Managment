@@ -11,6 +11,8 @@ namespace Employee_Managment.Data
         public DbSet<Credentials> Credentials { get; set; } = null!;
         public DbSet<Statistics> Statistics { get; set; } = null!;
         public DbSet<Vacation> Vacations { get; set; } = null!;
+        public DbSet<Penalty> Penalties { get; set; } = null!;
+
         public ApplicationDbContext()
         {
             //Database.EnsureDeleted();

@@ -28,9 +28,10 @@ namespace Employee_Managment.Models
         public string? Email { get; set; } = string.Empty;
 
         public Credentials? Credentials { get; set; }
-
+        public List<Vacation>? Vacations { get; set; }
+        //public List<Penalty>? Penalties { get; set; }
         public Statistics? Statistics { get; set; }
-        public ICollection<Vacation>? Vacation { get; set; }
+
         public string? AvatarFileName { get; set; } = string.Empty;
     }
 }

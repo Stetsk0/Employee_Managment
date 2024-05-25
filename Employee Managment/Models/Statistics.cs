@@ -21,7 +21,5 @@ namespace Employee_Managment.Models
         [Display(Name = "Worked hours")]
         public int WorkedHours { get; set; }
 
-        public Vacation? Vacation { get; set; }
-        //public List<string> TrainingCourses { get; set; } = new List<string>();
     }
 }

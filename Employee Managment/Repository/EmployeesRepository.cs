@@ -26,7 +26,6 @@ namespace Employee_Managment.Repository
                 WorkedHours = 0
             };
 
-            employee.Vacation = new List<Vacation>();
             employee.Statistics = statistics;
 
             _context.Employees.Add(employee);
@@ -74,7 +73,9 @@ namespace Employee_Managment.Repository
 
         public void DeleteEmployee(int employeeId)
         {
-            var employee = _context.Employees.Include(e => e.Credentials).Include(s => s.Statistics).FirstOrDefault(x => x.Id == employeeId);
+            var employee = _context.Employees.Include(e => e.Credentials).Include(s => s.Statistics).FirstOrDefault(e => e.Id == employeeId);
+            var penalties = _context.Penalties.FirstOrDefault(p => p.EmployeeId == employeeId);
+            var vacations = _context.Vacations.FirstOrDefault(v => v.EmployeeId == employeeId);
 
             if (employee != null)
             {
@@ -88,11 +89,16 @@ namespace Employee_Managment.Repository
                     _context.Statistics.Remove(employee.Statistics);
                 }
 
-                //if (vacation != null)
-                //{
-                //    _context.Vacations.Remove(vacation);
-                //}
+                if (penalties != null)
+                {
+                    _context.Remove(penalties);
+                }
 
+                if (vacations != null)
+                {
+                    _context.Remove(vacations);
+                }
+                
                 _context.Employees.Remove(employee);
 
                 _context.SaveChanges();

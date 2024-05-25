@@ -1,16 +1,18 @@
 ﻿@model IEnumerable<Employee_Managment.Models.Vacation>
 @{
-    ViewData["Title"] = "Vacation List";
+    ViewBag.Title = "Vacations";
+    var employee = ViewBag.Employee as Employee_Managment.Models.Employee;
 }
 
-<h2>@ViewData["Title"] for Employee @ViewBag.EmployeeId</h2>
+<h2>@employee.Name's Vacations</h2>
+<a asp-action="Create" asp-route-employeeId="@employee.Id" class="btn btn-primary">Add Vacation</a>
 
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Vacation Days</th>
-            <th>Vacation Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Description</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -18,15 +20,14 @@
         @foreach (var vacation in Model)
         {
             <tr>
-                <td>@vacation.Id</td>
-                <td>@vacation.VacationDays</td>
-                <td>@vacation.VacationType</td>
+                <td>@vacation.StartDate.ToShortDateString()</td>
+                <td>@vacation.EndDate.ToShortDateString()</td>
+                <td>@vacation.Description</td>
                 <td>
-                    <a href="@Url.Action("Edit", new { id = vacation.Id })">Edit</a>
+                    <a asp-action="Edit" asp-route-id="@vacation.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@vacation.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-<a href="@Url.Action("Add", new { employeeId = ViewBag.EmployeeId })" class="btn btn-primary">Add Vacation</a>
