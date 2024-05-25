@@ -12,7 +12,7 @@ namespace Employee_Managment.Repository
         {
             _context = context;
         }
-
+    
         public List<Penalty> GetPenaltiesByEmployeeId(int employeeId)
         {
             return _context.Penalties

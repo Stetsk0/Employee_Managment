@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Managment.Controllers
 {
-    [Authorize(Policy = "Admin")]
+    [Authorize]
     public class VacationController : Controller
     {
         private readonly VacationsRepository _vacationsRepository;
@@ -17,16 +17,20 @@ namespace Employee_Managment.Controllers
             _employeesRepository = employeesRepository;
         }
 
+        
         public IActionResult Index(int employeeId)
         {
+
             var employee = _employeesRepository.GetEmployeeById(employeeId);
             if (employee == null) return NotFound();
 
             ViewBag.Employee = employee;
             var vacations = _vacationsRepository.GetVacationsByEmployeeId(employeeId);
             return View(vacations);
+
         }
 
+        [Authorize(Policy = "Admin")]
         public IActionResult Create(int employeeId)
         {
             var employee = _employeesRepository.GetEmployeeById(employeeId);
@@ -36,6 +40,7 @@ namespace Employee_Managment.Controllers
             return View(vacation);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Vacation vacation)
@@ -48,6 +53,7 @@ namespace Employee_Managment.Controllers
             return View(vacation);
         }
 
+        [Authorize(Policy = "Admin")]
         public IActionResult Edit(int id)
         {
             var vacation = _vacationsRepository.GetVacationById(id);

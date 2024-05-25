@@ -3,7 +3,8 @@
     ViewBag.Title = "Vacations";
     var employee = ViewBag.Employee as Employee_Managment.Models.Employee;
 }
-
+@if(User.IsInRole("Admin"))
+{
 <h2>@employee.Name's Vacations</h2>
 <a asp-action="Create" asp-route-employeeId="@employee.Id" class="btn btn-primary">Add Vacation</a>
 
@@ -31,3 +32,27 @@
         }
     </tbody>
 </table>
+}
+@if(User.IsInRole("Employee"))
+{
+    <h2>@employee.Name's Vacations</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vacation in Model)
+            {
+                <tr>
+                    <td>@vacation.StartDate.ToShortDateString()</td>
+                    <td>@vacation.EndDate.ToShortDateString()</td>
+                    <td>@vacation.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

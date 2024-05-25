@@ -1,9 +1,11 @@
 ﻿using Employee_Managment.Models;
 using Employee_Managment.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Managment.Controllers
 {
+    [Authorize]
     public class PenaltiesController : Controller
     {
         private readonly PenaltiesRepository _penaltiesRepository;
@@ -25,6 +27,7 @@ namespace Employee_Managment.Controllers
             return View(penalties);
         }
 
+        [Authorize(Policy = "Admin")]
         public IActionResult Create(int employeeId)
         {
             var employee = _employeesRepository.GetEmployeeById(employeeId);
@@ -34,6 +37,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Penalty penalty)
@@ -46,6 +50,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
+        [Authorize(Policy = "Admin")]
         public IActionResult Edit(int id)
         {
             var penalty = _penaltiesRepository.GetPenaltyById(id);
@@ -54,6 +59,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Penalty penalty)
@@ -66,6 +72,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
+        [Authorize(Policy = "Admin")]
         public IActionResult Delete(int id)
         {
             var penalty = _penaltiesRepository.GetPenaltyById(id);
@@ -74,6 +81,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

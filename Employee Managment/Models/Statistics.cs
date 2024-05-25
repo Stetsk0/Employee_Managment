@@ -20,6 +20,5 @@ namespace Employee_Managment.Models
         [Required]
         [Display(Name = "Worked hours")]
         public int WorkedHours { get; set; }
-
     }
 }
