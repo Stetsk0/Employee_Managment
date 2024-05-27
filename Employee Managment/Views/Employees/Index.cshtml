@@ -1,18 +1,19 @@
 ﻿@model IEnumerable<Employee_Managment.Models.Employee>
 
 @{
-    ViewData["Title"] = "Employee Index";
+    ViewData["Title"] = "Персонал";
 }
 
-<h2>Employee List</h2>
+<h2>Список співробітників</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Position</th>
+            <th>Прізвище та ім'я</th>
+            <th>Відділ</th>
+            <th>Посада</th>
             <th>Email</th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -25,34 +26,39 @@
                 <td>@employee.Position</td>
                 <td>@employee.Email</td>
                 <td>
-                    <a class="btn btn-link text-decoration-none" asp-controller="employees" asp-action="edit" asp-route-id="@employee.Id">
-                        Edit Data
-                        <i class="fa-regular fa-pen-to-square fa-lg"></i>
-                    </a>
-                    |
-                    <a class="btn btn-link text-decoration-none" asp-controller="credentials" asp-action="edit" asp-route-id="@employee.Id">
-                        Edit credentials
-                        <i class="fa-solid fa-key fa-lg"></i>
-                    </a>
-                    |
-                    <a class="btn btn-link text-decoration-none" asp-controller="statistics" asp-action="edit" asp-route-id="@employee.Id">
-                        Edit Stats
-                        <i class="fa-solid fa-chart-simple fa-lg"></i>
-                    </a>
-                    |
-                    <a class="btn btn-link text-decoration-none" asp-controller="vacation" asp-action="index" asp-route-employeeId="@employee.Id">
-                        Vacation
-                        <i class="fa-solid fa-umbrella-beach fa-lg"></i> 
-                    </a>
-                    |
-                    <a class="btn btn-link text-decoration-none" asp-controller="penalties" asp-action="index" asp-route-employeeId="@employee.Id">
-                        Penalty
-                        <i class="fa-solid fa-bullhorn fa-lg"></i>
-                    </a>
-                    |
-                    <a class="btn btn-link text-decoration-none" asp-controller="employees" asp-action="delete" asp-route-employeeid="@employee.Id" onclick="return confirmDelete()">
-                        Delete
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                            Редагувати
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" asp-controller="employees" asp-action="edit" asp-route-id="@employee.Id">
+                                <i class="fa-solid fa-address-card fa-lg"></i>
+                                Персональні дані
+                            </a>
+                            <a class="dropdown-item" asp-controller="credentials" asp-action="edit" asp-route-id="@employee.Id">
+                                <i class="fa-solid fa-key fa-lg"></i>
+                                Облікові дані
+                            </a>
+                            <a class="dropdown-item" asp-controller="statistics" asp-action="edit" asp-route-id="@employee.Id">
+                                <i class="fa-solid fa-chart-simple fa-lg"></i>
+                                Статистика
+                            </a>
+                            <a class="dropdown-item" asp-controller="vacation" asp-action="index" asp-route-employeeId="@employee.Id">
+                                <i class="fa-solid fa-umbrella-beach fa-lg"></i>
+                                Відпуски
+                            </a>
+                            <a class="dropdown-item" asp-controller="penalties" asp-action="index" asp-route-employeeId="@employee.Id">
+                                <i class="fa-solid fa-bullhorn fa-lg"></i>
+                                Штрафи
+                            </a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a class="btn text-decoration-none btn-danger" role="button" asp-controller="employees" asp-action="delete" asp-route-employeeid="@employee.Id" onclick="return confirmDelete()">
                         <i class="fa-solid fa-trash fa-lg"></i>
+                        Видалити
                     </a>
                 </td>
             </tr>
@@ -60,10 +66,10 @@
     </tbody>
 </table>
 
-<a asp-action="Add" class="btn btn-primary">Add New Employee</a>
+<a asp-action="Add" class="btn btn-primary">Додати</a>
 
 <script>
     function confirmDelete() {
-        return confirm("Are you sure you want to delete this employee?");
+        return confirm("Ви впевнені, що хочете видалити цього співробітника?");
     }
 </script>

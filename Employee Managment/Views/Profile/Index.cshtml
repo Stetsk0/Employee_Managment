@@ -7,38 +7,35 @@
     var employeeId = employeeIdClaim?.Value;
 }
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Профіль";
     Layout = "_Layout";
 }
 
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h2>User Profile</h2>
+            <h2>Профіль</h2>
         </div>
         <div class="card-body">
             <div class="row m-lg-0">
-                
                 <div class="col-md-4">
                     <img src="~/avatars/@(string.IsNullOrEmpty(@Model.AvatarFileName) ? "default.png" : @Model.AvatarFileName)" class="img-fluid" alt="User Avatar">
                     <form asp-action="UploadAvatar" method="post" asp-controller="profile" asp-route-id="@employeeId" enctype="multipart/form-data">
                         <div class="form-group mt-3">
-                            <label for="avatar">Upload Avatar</label>
+                            <label for="avatar">Завантажити аватар</label>
                             <input type="file" class="form-control-file" id="avatar" name="avatar">
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                        <button type="submit" class="btn btn-primary mt-2">Завантажити</button>
                     </form>
                 </div>
-                
                 <div class="col-md-8 ml-0">
                     <h3>@Model.Name</h3>
-                    <p><strong>Department:</strong> @Model.Department</p>
-                    <p><strong>Position:</strong> @Model.Position</p>
-                    <p><strong>Date of Birth:</strong> @Model.DateOfBirth?.ToString("MMMM dd, yyyy")</p>
-                    <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
+                    <p><strong>Відділ:</strong> @Model.Department</p>
+                    <p><strong>Посада:</strong> @Model.Position</p>
+                    <p><strong>Дата народження:</strong> @Model.DateOfBirth?.ToString("MMMM dd, yyyy")</p>
+                    <p><strong>Телефон:</strong> @Model.PhoneNumber</p>
                     <p><strong>Email:</strong> @Model.Email</p>
                 </div>
-                
             </div>
         </div>
     </div>

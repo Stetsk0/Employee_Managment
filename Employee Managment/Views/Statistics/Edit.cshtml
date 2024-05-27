@@ -1,10 +1,10 @@
 ﻿@model Employee_Managment.Models.Statistics
 
 @{
-    ViewData["Title"] = "Edit Statistics";
+    ViewData["Title"] = "Редагувати статистику";
 }
 
-<h2>Edit Statistics</h2>
+<h2>Редагувати статистику</h2>
 
 <form asp-action="Edit">
     <div class="form-group">
@@ -23,18 +23,36 @@
         <span asp-validation-for="Bonus" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="WorkedHours" class="control-label"></label>
-        <input asp-for="WorkedHours" class="form-control" />
-        <span asp-validation-for="WorkedHours" class="text-danger"></span>
+        <label asp-for="HoursWorked" class="control-label"></label>
+        <input asp-for="HoursWorked" class="form-control" />
+        <span asp-validation-for="HoursWorked" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
+        <label asp-for="OvertimeHours" class="control-label"></label>
+        <input asp-for="OvertimeHours" class="form-control" />
+        <span asp-validation-for="OvertimeHours" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CompletedTasks" class="control-label"></label>
+        <input asp-for="CompletedTasks" class="form-control" />
+        <span asp-validation-for="OvertimeHours" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AverageTaskCompletionTime" class="control-label"></label>
+        <input asp-for="AverageTaskCompletionTime" class="form-control" />
+        <span asp-validation-for="AverageTaskCompletionTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OnTimeTaskCompletionPercentage" class="control-label"></label>
+        <input asp-for="OnTimeTaskCompletionPercentage" class="form-control" />
+        <span asp-validation-for="OnTimeTaskCompletionPercentage" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Зберегти" class="btn btn-primary" />
+        <a asp-action="Index" asp-controller="Employees" class="btn btn-secondary">Назад</a>
     </div>
 </form>
-
-<div>
-    <a asp-action="Index" asp-controller="Employees">Back to List</a>
-</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

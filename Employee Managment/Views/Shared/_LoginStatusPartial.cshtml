@@ -1,11 +1,11 @@
 ﻿@if (User == null || User.Identity == null || User.Identity.IsAuthenticated)
 {
     <form method="post" class="form-inline text-light" asp-controller="access" asp-action="logout">
-        <button type="submit" class="ml-2 btn btn-link navbar-brand text-light"> <i class="fa-solid fa-right-from-bracket"> </i> Logout</button>
+        <button type="submit" class="ml-2 btn btn-link navbar-brand text-light"> <i class="fa-solid fa-right-from-bracket"> </i> Вийти</button>
         
     </form>
 }
 else
 {
-    <a class="ml-2 btn btn-link navbar-brand text-light" asp-controller="access" asp-action="login"> <i class="fa-solid fa-right-to-bracket"> </i> Login</a>
+    <a class="ml-2 btn btn-link navbar-brand text-light" asp-controller="access" asp-action="login"> <i class="fa-solid fa-right-to-bracket"> </i> Увійти</a>
 }

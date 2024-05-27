@@ -18,13 +18,13 @@ namespace Employee_Managment.Repository
         public void AddEmployee(Employee employee)
         {
             employee.Credentials!.Password = PasswordHasher.HashPassword(employee.Credentials.Password);
-            var statistics = new Statistics
-            {
-                Salary = "0",
-                QA = "0",
-                Bonus = "0",
-                WorkedHours = 0
-            };
+            var statistics = new Statistics();
+            //{
+            //    Salary = 0,
+            //    QA = 0,
+            //    Bonus = 0,
+            //    HoursWorked = 0
+            //};
 
             employee.Statistics = statistics;
 

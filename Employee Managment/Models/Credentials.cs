@@ -6,11 +6,12 @@ namespace Employee_Managment.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter the user name.")]
-        [Display(Name = "User Name")]
+        [Required(ErrorMessage = "Будь ласка, введіть логін.")]
+        [Display(Name = "Логін")]
         public string UserName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Please enter the password.")]
+        [Required(ErrorMessage = "Будь ласка, введіть пароль.")]
+        [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
     }

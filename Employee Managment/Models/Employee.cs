@@ -7,29 +7,33 @@ namespace Employee_Managment.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Вкажіть прізвище та ім'я.")]
+        [Display(Name = "Прізвище та ім'я")]
         public string Name { get; set; } = string.Empty;
 
+        [Display(Name = "Відділ")]
         public string? Department { get; set; } = string.Empty;
 
+        [Display(Name = "Посада")]
         public string? Position { get; set; } = string.Empty;
 
+        [Display(Name = "Дата народження")]
         [DataType(DataType.Date)]
-        [Display(Name = "Date of Birth")]
         public DateTime? DateOfBirth { get; set; } = DateTime.Now;
 
-        [Phone]
-        [Display(Name = "Phone Number")]
-        [StringLength(15, ErrorMessage = "Phone number cannot be longer than 15 characters.")]
-        public string? PhoneNumber { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Вкажіть номер телефону.")]
+        [Phone(ErrorMessage = "Некоректний номер телефону.")]
+        [Display(Name = "Номер телефону")]
+        [StringLength(13)]
+        public string PhoneNumber { get; set; } = string.Empty;
 
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string? Email { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Вкажіть електронну пошту.")]
+        [EmailAddress(ErrorMessage = "Некоректна пошта.")]
+        [Display(Name = "Електронна пошта")]
+        public string Email { get; set; } = string.Empty;
 
         public Credentials? Credentials { get; set; }
-        public List<Vacation>? Vacations { get; set; }
-        //public List<Penalty>? Penalties { get; set; }
+
         public Statistics? Statistics { get; set; }
 
         public string? AvatarFileName { get; set; } = string.Empty;

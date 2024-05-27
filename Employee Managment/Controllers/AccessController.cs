@@ -56,7 +56,7 @@ namespace Employee_Managment.Controllers
 
             // Перевірка облікових даних адміністратора
             var adminPassword = _config.GetValue<string>("Admin:Password");
-            var adminLogin = _config.GetValue<string>("Admin:Login");
+            var adminLogin = _config.GetValue<string>("Admin:UserName");
 
             if (modelLogin.Credential.UserName == adminLogin && modelLogin.Credential.Password == adminPassword)
             {

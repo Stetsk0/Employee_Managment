@@ -46,7 +46,6 @@ namespace Employee_Managment.Controllers
         {
             ViewBag.Action = "edit";
 
-            //var employee = new Employee { Id = id.HasValue ? id.Value : 0 };
             var employee = _employeesRepository.GetEmployeeById(id.HasValue ? id.Value : 0);
 
             return View(employee);

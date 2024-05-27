@@ -1,20 +1,19 @@
 ﻿@model IEnumerable<Employee_Managment.Models.Vacation>
 @{
-    ViewBag.Title = "Vacations";
+    ViewBag.Title = "Відпуски";
     var employee = ViewBag.Employee as Employee_Managment.Models.Employee;
 }
 @if(User.IsInRole("Admin"))
 {
-<h2>@employee.Name's Vacations</h2>
-<a asp-action="Create" asp-route-employeeId="@employee.Id" class="btn btn-primary">Add Vacation</a>
+<h2>@employee!.Name</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Description</th>
-            <th>Actions</th>
+            <th>Початок</th>
+            <th>Кінець</th>
+            <th>Опис</th>
+            <th>Дії</th>
         </tr>
     </thead>
     <tbody>
@@ -25,23 +24,26 @@
                 <td>@vacation.EndDate.ToShortDateString()</td>
                 <td>@vacation.Description</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@vacation.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@vacation.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@vacation.Id" class="btn btn-warning">Редагувати</a>
+                    <a asp-action="Delete" asp-route-id="@vacation.Id" class="btn btn-danger">Видалити</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+    <a asp-action="Create" asp-route-employeeId="@employee.Id" class="btn btn-primary">Додати</a>
+    <a asp-action="Index" asp-controller="Employees" class="btn btn-secondary">Назад</a>
 }
 @if(User.IsInRole("Employee"))
 {
-    <h2>@employee.Name's Vacations</h2>
+
+    <h2>@employee!.Name</h2>
     <table class="table">
         <thead>
             <tr>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Description</th>
+                <th>Початок</th>
+                <th>Кінець</th>
+                <th>Опис</th>
             </tr>
         </thead>
         <tbody>

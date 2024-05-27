@@ -32,7 +32,7 @@ namespace Employee_Managment.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, [Bind("Id,Salary,QA,Bonus,WorkedHours,VacationDays,SickDays")] Statistics statistics)
+        public IActionResult Edit(int id, Statistics statistics)
         {
             if (id != statistics.Id)
             {

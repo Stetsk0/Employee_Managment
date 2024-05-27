@@ -87,11 +87,13 @@ namespace Employee_Managment.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var vacation = _vacationsRepository.GetVacationById(id);
+
             if (vacation != null)
             {
                 _vacationsRepository.DeleteVacation(id);
             }
-            return RedirectToAction(nameof(Index), new { employeeId = vacation.EmployeeId });
+
+            return RedirectToAction(nameof(Index), new { employeeId = vacation!.EmployeeId });
         }
     }
 }

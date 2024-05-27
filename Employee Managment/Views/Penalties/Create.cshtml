@@ -1,6 +1,6 @@
 ﻿@model Employee_Managment.Models.Penalty
 @{
-    ViewBag.Title = "Create Penalty";
+    ViewBag.Title = "Створити штраф";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -22,6 +22,6 @@
         <span asp-validation-for="Amount" class="text-danger"></span>
     </div>
     <input type="hidden" asp-for="EmployeeId" />
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Back</a>
+    <button type="submit" class="btn btn-primary">Зберегти</button>
+    <a asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Назад</a>
 </form>

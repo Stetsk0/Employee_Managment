@@ -1,54 +1,58 @@
 ﻿@model IEnumerable<Employee_Managment.Models.Penalty>
 @{
-    ViewBag.Title = "Penalties";
+    ViewBag.Title = "Штрафи";
     var employee = ViewBag.Employee as Employee_Managment.Models.Employee;
 }
-@if(User.IsInRole("Admin"))
-{
-<h2>@employee.Name's Penalties</h2>
-<a asp-action="Create" asp-route-employeeId="@employee.Id" class="btn btn-primary">Add Penalty</a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Reason</th>
-            <th>Amount</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var penalty in Model)
-        {
-            <tr>
-                <td>@penalty.Date.ToShortDateString()</td>
-                <td>@penalty.Reason</td>
-                <td>@penalty.Amount</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@penalty.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@penalty.Id" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-}
-@if(User.IsInRole("Employee"))
+@if (User.IsInRole("Admin"))
 {
-    <h2>@employee.Name's Penalties</h2>
+    <h2>@employee!.Name</h2>
+
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Reason</th>
-                <th>Amount</th>
+                <th>Дата</th>
+                <th>Причина</th>
+                <th>Сума</th>
+                <th>Дії</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var penalty in Model)
             {
                 <tr>
-                    <td>@penalty.Date.ToShortDateString()</td>
+                    <td>@penalty.Date.GetValueOrDefault()</td>
+                    <td>@penalty.Reason</td>
+                    <td>@penalty.Amount</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@penalty.Id" class="btn btn-warning">Редагувати</a>
+                        <a asp-action="Delete" asp-route-id="@penalty.Id" class="btn btn-danger">Видалити</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Create" asp-route-employeeId="@employee.Id" class="btn btn-primary">Додати</a>
+    <a asp-controller="employees" asp-action="Index" class="btn btn-secondary">Назад</a>
+}
+
+@if (User.IsInRole("Employee"))
+{
+    <h2>@employee!.Name</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Причина</th>
+                <th>Сума</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var penalty in Model)
+            {
+                <tr>
+                    <td>@penalty.Date.GetValueOrDefault()</td>
                     <td>@penalty.Reason</td>
                     <td>@penalty.Amount</td>
                 </tr>

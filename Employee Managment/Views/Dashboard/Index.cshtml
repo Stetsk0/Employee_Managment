@@ -1,52 +1,54 @@
 ﻿@model Statistics
-@* @inject IHttpContextAccessor HttpContextAccessor
-
 @{
-    var userClaims = HttpContextAccessor.HttpContext!.User.Claims;
-    var employeeIdClaim = userClaims.FirstOrDefault(c => c.Type == "EmployeeId");
-    var employeeId = employeeIdClaim?.Value;
-} *@
-@{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Статистика";
 }
 
 <h2>Dashboard</h2>
 
-
-<div class="row mb-4">
-    <div class="col-md-4">
-        <div class="d-flex flex-row widget stats salary">
-            <div class="d-flex flex-column justify-content-center p-5">
-                <i class="fa-solid fa-dollar-sign fa-2xl"></i>
-            </div>
-            <div class="d-flex flex-column m-auto py-3 text-light">
-                <span class="lead">Salary</span>
-                <h1 class="display-6 fw-bold text-light">@Model.Salary$</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="d-flex flex-row widget stats qa">
-            <div class="d-flex flex-column justify-content-center p-5">
-                <i class="fa-solid fa-ranking-star fa-2xl"></i>
-            </div>
-            <div class="d-flex flex-column m-auto py-3 text-light">
-                <span class="lead">QA</span>
-                <h1 class="display-6 fw-bold text-light">@Model.QA</h1>
+@if (Model.Salary == 0 && Model.QA == 0 && Model.Bonus == 0 && Model.HoursWorked == 0)
+{
+    <h1>На жаль, ваша статистика ще не готова.</h1>
+}
+else
+{
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="d-flex flex-row widget stats salary">
+                <div class="d-flex flex-column justify-content-center p-5">
+                    <i class="fa-solid fa-dollar-sign fa-2xl"></i>
+                </div>
+                <div class="d-flex flex-column m-auto py-3 text-light">
+                    <span class="lead">Зарплата</span>
+                    <h1 class="display-6 fw-bold text-light">@Model.Salary$</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="d-flex flex-row widget stats bonus">
-            <div class="d-flex flex-column justify-content-center p-5">
-                <i class="fa-solid fa-percent fa-2xl"></i>
-            </div>
-            <div class="d-flex flex-column m-auto py-3 text-light">
-                <span class="lead">Bonus</span>
-                <h1 class="display-6 fw-bold text-light">@Model.Bonus%</h1>
+        <div class="col-md-4">
+            <div class="d-flex flex-row widget stats bonus">
+                <div class="d-flex flex-column justify-content-center p-5">
+                    <i class="fa-solid fa-dollar-sign fa-2xl"></i>
+                </div>
+                <div class="d-flex flex-column m-auto py-3 text-light">
+                    <span class="lead">Бонус</span>
+                    <h1 class="display-6 fw-bold text-light">@Model.Bonus$</h1>
+                </div>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="d-flex flex-row widget stats qa">
+                <div class="d-flex flex-column justify-content-center p-5">
+                    <i class="fa-solid fa-ranking-star fa-2xl"></i>
+                </div>
+                <div class="d-flex flex-column m-auto py-3 text-light">
+                    <span class="lead">QA</span>
+                    <h1 class="display-6 fw-bold text-light">@Model.QA</h1>
+                </div>
+            </div>
+        </div>
+
+        
     </div>
-</div>
+
+}

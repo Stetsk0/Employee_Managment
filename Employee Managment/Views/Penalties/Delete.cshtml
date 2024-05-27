@@ -1,22 +1,22 @@
 ﻿@model Employee_Managment.Models.Penalty
 @{
-    ViewBag.Title = "Delete Penalty";
+    ViewBag.Title = "Видалити штраф";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>Are you sure you want to delete this penalty?</h4>
+    <h4>Ви впевнені, що хочете видалити цей штраф?</h4>
     <div>
         <h5>@Model.Reason</h5>
         <p>
-            <strong>Date:</strong> @Model.Date.ToShortDateString()<br />
-            <strong>Amount:</strong> @Model.Amount
+            <strong>Дата:</strong> @Model.Date.GetValueOrDefault()<br />
+            <strong>Сума:</strong> @Model.Amount
         </p>
     </div>
     <form asp-action="DeleteConfirmed" method="post">
         <input type="hidden" asp-for="Id" />
-        <button type="submit" class="btn btn-danger">Delete</button>
-        <a asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Back</a>
+        <button type="submit" class="btn btn-danger">Видалити</button>
+        <a asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Назад</a>
     </form>
 </div>
