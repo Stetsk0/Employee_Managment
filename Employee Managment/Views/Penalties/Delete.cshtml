@@ -10,7 +10,7 @@
     <div>
         <h5>@Model.Reason</h5>
         <p>
-            <strong>Дата:</strong> @Model.Date.GetValueOrDefault()<br />
+            <strong>Дата:</strong> @Model.Date.ToShortDateString()<br />
             <strong>Сума:</strong> @Model.Amount
         </p>
     </div>

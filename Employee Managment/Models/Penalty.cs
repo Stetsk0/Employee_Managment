@@ -8,7 +8,7 @@ namespace Employee_Managment.Models
 
         [Required(ErrorMessage = "Вкажіть дату штрафу.")]
         [Display(Name = "Дата штрафу")]
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "Вкажіть причину штрафу.")]
         [Display(Name = "Причина штрафу")]

@@ -36,7 +36,8 @@
 }
 @if(User.IsInRole("Employee"))
 {
-
+    @if (Model != null && Model.Any())
+    {
     <h2>@employee!.Name</h2>
     <table class="table">
         <thead>
@@ -57,4 +58,9 @@
             }
         </tbody>
     </table>
+    }
+    else
+    {
+        <h1>Відпусток немає</h1>
+    }
 }

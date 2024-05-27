@@ -15,8 +15,7 @@ namespace Employee_Managment.Repository
 
         public List<Statistics> GetStatistics()
         {
-            var statistics = _context.Statistics.ToList();
-            return statistics;
+            return _context.Statistics.ToList();
         }
 
         public Statistics? GetStatisticsById(int id) => _context.Statistics.FirstOrDefault(s => s.Id == id);

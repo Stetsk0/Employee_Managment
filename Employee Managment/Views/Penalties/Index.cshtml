@@ -21,7 +21,7 @@
             @foreach (var penalty in Model)
             {
                 <tr>
-                    <td>@penalty.Date.GetValueOrDefault()</td>
+                    <td>@penalty.Date.ToShortDateString()</td>
                     <td>@penalty.Reason</td>
                     <td>@penalty.Amount</td>
                     <td>
@@ -39,24 +39,30 @@
 
 @if (User.IsInRole("Employee"))
 {
-    <h2>@employee!.Name</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Причина</th>
-                <th>Сума</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var penalty in Model)
-            {
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@penalty.Date.GetValueOrDefault()</td>
-                    <td>@penalty.Reason</td>
-                    <td>@penalty.Amount</td>
+                    <th>Дата</th>
+                    <th>Причина</th>
+                    <th>Сума</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var penalty in Model)
+                {
+                    <tr>
+                        <td>@penalty.Date.ToShortDateString()</td>
+                        <td>@penalty.Reason</td>
+                        <td>@penalty.Amount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1>Штрафів немає</h1>
+    }
 }
