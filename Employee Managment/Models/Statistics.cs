@@ -24,9 +24,6 @@ namespace Employee_Managment.Models
         [Required(ErrorMessage = "Вкажіть кількість відпрацьованих годин.")]
         public int HoursWorked { get; set; }
 
-        [Display(Name = "Кількість понаднормових годин")]
-        public int OvertimeHours { get; set; }
-
         [Display(Name = "Кількість виконаних завдань")]
         public int CompletedTasks { get; set; }
 

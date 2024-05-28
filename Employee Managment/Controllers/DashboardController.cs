@@ -9,9 +9,11 @@ namespace Employee_Managment.Controllers
     public class DashboardController : Controller
     {
         private readonly StatisticsRepository _statisticsRepository;
-        public DashboardController(StatisticsRepository statisticsRepository)
+        private readonly EmployeesRepository _employeesRepository;
+        public DashboardController(StatisticsRepository statisticsRepository, EmployeesRepository employeesRepository)
         {
             _statisticsRepository = statisticsRepository;
+            _employeesRepository = employeesRepository;
         }
 
         //public IActionResult Index(int id)
@@ -28,6 +30,7 @@ namespace Employee_Managment.Controllers
         public IActionResult Index(int id)
         {
             var statistics = _statisticsRepository.GetStatisticsById(id);
+            var departmentSalaryStatistics = _employeesRepository.GetDepartmentSalaryStatistics();
 
             if (statistics == null)
             {
@@ -41,7 +44,6 @@ namespace Employee_Managment.Controllers
                 QA = (int)allStatistics.Average(s => s.QA),
                 Bonus = (int)allStatistics.Average(s => s.Bonus),
                 HoursWorked = (int)allStatistics.Average(s => s.HoursWorked),
-                OvertimeHours = (int)allStatistics.Average(s => s.OvertimeHours),
                 CompletedTasks = (int)allStatistics.Average(s => s.CompletedTasks),
                 AverageTaskCompletionTime = (int)allStatistics.Average(s => s.AverageTaskCompletionTime),
                 OnTimeTaskCompletionPercentage = allStatistics.Average(s => s.OnTimeTaskCompletionPercentage)
@@ -50,7 +52,8 @@ namespace Employee_Managment.Controllers
             var viewModel = new EmployeeStatisticsViewModel
             {
                 EmployeeStatistics = statistics,
-                AverageStatistics = averageStatistics
+                AverageStatistics = averageStatistics,
+                DepartmentSalaryStatistics = departmentSalaryStatistics
             };
 
             return View(viewModel);
