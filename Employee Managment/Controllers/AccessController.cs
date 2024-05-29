@@ -46,10 +46,10 @@ namespace Employee_Managment.Controllers
                     new Claim("Employee", "Employee")
                 };
 
-                ClaimsIdentity identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                ClaimsIdentity identity = new ClaimsIdentity(claims, "CookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                await HttpContext.SignInAsync("CookieAuth", claimsPrincipal);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -67,22 +67,22 @@ namespace Employee_Managment.Controllers
                     new Claim("Admin", "Admin")
                 };
 
-                ClaimsIdentity identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                ClaimsIdentity identity = new ClaimsIdentity(claims, "CookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                await HttpContext.SignInAsync("CookieAuth", claimsPrincipal);
 
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError("", "Invalid login attempt.");
+            ModelState.AddModelError("", "Неправильна спроба входу.");
             return View(modelLogin);
         }
 
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync("MyCookieAuth");
+            await HttpContext.SignOutAsync("CookieAuth");
             return RedirectToAction("Index", "Home");
         }
 

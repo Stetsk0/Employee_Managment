@@ -1,9 +1,7 @@
 ﻿using Employee_Managment.Models;
 using Employee_Managment.Repository;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Core.Types;
 
 namespace Employee_Managment.Controllers
 {

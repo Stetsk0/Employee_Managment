@@ -1,7 +1,6 @@
 ﻿using Employee_Managment.Data;
 using Employee_Managment.Models;
 using Employee_Managment.Security;
-using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Managment.Repository
 {

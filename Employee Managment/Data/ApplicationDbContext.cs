@@ -1,6 +1,5 @@
 ﻿using Employee_Managment.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 
 namespace Employee_Managment.Data
@@ -22,6 +21,5 @@ namespace Employee_Managment.Data
         {
             optionsBuilder.UseSqlite("Data Source=employees.db");
         }
-
     }
 }

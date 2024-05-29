@@ -1,7 +1,6 @@
 ﻿using Employee_Managment.Data;
 using Employee_Managment.Models;
 using Employee_Managment.Security;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Managment.Repository
@@ -18,14 +17,8 @@ namespace Employee_Managment.Repository
         public void AddEmployee(Employee employee)
         {
             employee.Credentials!.Password = PasswordHasher.HashPassword(employee.Credentials.Password);
-            var statistics = new Statistics();
-            //{
-            //    Salary = 0,
-            //    QA = 0,
-            //    Bonus = 0,
-            //    HoursWorked = 0
-            //};
 
+            var statistics = new Statistics();
             employee.Statistics = statistics;
 
             _context.Employees.Add(employee);

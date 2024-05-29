@@ -1,6 +1,5 @@
 using Employee_Managment.Data;
 using Employee_Managment.Repository;
-using NuGet.Protocol.Core.Types;
 
 namespace Employee_Managment
 {
@@ -10,7 +9,6 @@ namespace Employee_Managment
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ApplicationDbContext>();
             builder.Services.AddScoped<EmployeesRepository>();
@@ -21,9 +19,9 @@ namespace Employee_Managment
 
             builder.Services.AddHttpContextAccessor();
 
-            builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+            builder.Services.AddAuthentication().AddCookie("CookieAuth", options =>
             {
-                options.Cookie.Name = "MyCookieAuth";
+                options.Cookie.Name = "CookieAuth";
                 options.LoginPath = "/access/login";
                 options.AccessDeniedPath = "/access/error";
             });
@@ -36,7 +34,6 @@ namespace Employee_Managment
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");

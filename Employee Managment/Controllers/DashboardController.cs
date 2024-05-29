@@ -16,17 +16,6 @@ namespace Employee_Managment.Controllers
             _employeesRepository = employeesRepository;
         }
 
-        //public IActionResult Index(int id)
-        //{
-        //    var statistics = _statisticsRepository.GetStatisticsById(id);
-
-        //    if (statistics == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(statistics);
-        //}
         public IActionResult Index(int id)
         {
             var statistics = _statisticsRepository.GetStatisticsById(id);

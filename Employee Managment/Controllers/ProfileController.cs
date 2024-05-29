@@ -1,7 +1,5 @@
-﻿using Employee_Managment.Models;
-using Employee_Managment.Repository;
+﻿using Employee_Managment.Repository;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Managment.Controllers
