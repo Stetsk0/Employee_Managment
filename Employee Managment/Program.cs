@@ -56,9 +56,9 @@ namespace Employee_Managment
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapControllerRoute(
-                name: "profile",
-        pattern: "{controller=Profile}/{action=Index}/{id?}");
+            //app.MapControllerRoute(
+            //    name: "profile",
+            //    pattern: "{controller=Profile}/{action=Index}/{id?}");
             app.Run();
         }
     }

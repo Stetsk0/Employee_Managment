@@ -30,7 +30,7 @@ namespace Employee_Managment.Controllers
         public IActionResult Index(int id)
         {
             var statistics = _statisticsRepository.GetStatisticsById(id);
-            var departmentSalaryStatistics = _employeesRepository.GetDepartmentSalaryStatistics();
+            var departmentSalaryStatistics = _employeesRepository.GetDepartmentAverageSalaryStatistics().ToDictionary(x => x.Key, x => (int)Math.Round(x.Value));
 
             if (statistics == null)
             {

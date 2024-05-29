@@ -8,7 +8,7 @@
 
 <div class="container">
     <h1 class="d-flex justify-content-center mb-3">Статистика</h1>
-    <div class="row">
+    <div class="row mx-auto">
         <div class="col-md-6 mx-auto">
             <h4 class="d-flex justify-content-center">Загальна інформація</h4>
             <table class="table table-hover">
@@ -43,13 +43,6 @@
 
                     <tr>
                         <td>Кількість виконаних завдань</td>
-                        @* <td colspan="2">
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: @employeeStats.CompletedTasks%" aria-valuenow="@employeeStats.CompletedTasks" aria-valuemin="0" aria-valuemax="100">
-                                    @employeeStats.CompletedTasks%
-                                </div>
-                            </div>
-                        </td> *@
                         <td>@employeeStats.CompletedTasks</td>
                         <td>@averageStats.CompletedTasks</td>
                     </tr>
@@ -60,24 +53,15 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="mx-auto gy-5 col-md-6">
+            <div class="mx-auto mt-3 gy-5 col-md-6">
                 <h4 class="d-flex justify-content-center">Зарплата по відділам</h4>
             <canvas id="chartDepartmentSalary" width="400" height="200"></canvas></div>
         </div>
         
         
         <div class="col-md-6 mx-auto row">
-@*             <h3 class="d-flex justify-content-center">Графіки</h3> *@
-
-@*             <h3>Зарплата</h3>
-            <canvas id="chartSalary" width="200" height="100"></canvas> *@
-
             <h4 class="d-flex justify-content-center">QA</h4>
             <canvas id="chartQA" width="200" height="100"></canvas>
-
-@*             <h3>Години та понаднормові години</h3>
-            <canvas id="chartHours" width="400" height="200"></canvas> *@
-
             <h4 class="d-flex justify-content-center">Завдання</h4>
             <canvas id="chartTasks" width="400" height="200"></canvas>
 
@@ -89,23 +73,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // var chartSalaryData = {
-        //     labels: ["Зарплата"],
-        //     datasets: [{
-        //         label: 'Працівник',
-        //         data: [@employeeStats.Salary],
-        //         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        //         borderColor: 'rgba(75, 192, 192, 1)',
-        //         borderWidth: 1
-        //     },
-        //     {
-        //         label: 'Середнє значення',
-        //         data: [@averageStats.Salary],
-        //         backgroundColor: 'rgba(153, 102, 255, 0.2)',
-        //         borderColor: 'rgba(153, 102, 255, 1)',
-        //         borderWidth: 1
-        //     }]
-        // };
 
         var chartQAData = {
             labels: ["QA"],
@@ -124,8 +91,6 @@
                 borderWidth: 1
             }]
         };
-
-
 
         var chartTasksData = {
             labels: ["Виконані завдання", "Середній час виконання"],
@@ -176,21 +141,10 @@
             }]
         };
 
-        // new Chart(document.getElementById('chartSalary'), {
-        //     type: 'bar',
-        //     data: chartSalaryData
-        // });
-
         new Chart(document.getElementById('chartQA'), {
             type: 'bar',
             data: chartQAData
         });
-
-
-        // new Chart(document.getElementById('chartHours'), {
-        //     type: 'bar',
-        //     data: chartHoursData
-        // });
 
         new Chart(document.getElementById('chartTasks'), {
             type: 'bar',

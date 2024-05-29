@@ -104,13 +104,13 @@ namespace Employee_Managment.Repository
                 _context.SaveChanges();
             }
         }
-        public Dictionary<string, int> GetDepartmentSalaryStatistics()
+        public Dictionary<string, double> GetDepartmentAverageSalaryStatistics()
         {
             return _context.Employees
                            .Where(e => e.Statistics != null)
                            .GroupBy(e => e.Department)
-                           .Select(g => new { Department = g.Key, TotalSalary = g.Sum(e => e.Statistics!.Salary) })
-                           .ToDictionary(x => x.Department, x => x.TotalSalary);
+                           .Select(g => new { Department = g.Key, AverageSalary = g.Average(e => e.Statistics!.Salary) })
+                           .ToDictionary(x => x.Department, x => x.AverageSalary);
         }
     }
 }
