@@ -27,7 +27,7 @@ namespace Employee_Managment.Controllers
             return View(penalties);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(int employeeId)
         {
             var employee = _employeesRepository.GetEmployeeById(employeeId);
@@ -37,7 +37,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Penalty penalty)
@@ -50,7 +50,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var penalty = _penaltiesRepository.GetPenaltyById(id);
@@ -59,7 +59,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Penalty penalty)
@@ -72,7 +72,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var penalty = _penaltiesRepository.GetPenaltyById(id);
@@ -81,7 +81,7 @@ namespace Employee_Managment.Controllers
             return View(penalty);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

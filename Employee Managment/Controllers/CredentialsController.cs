@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Managment.Controllers
 {
-    [Authorize(Policy = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class CredentialsController : Controller
     {
         private readonly CredentialsRepository _credentialsRepository;

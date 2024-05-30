@@ -28,8 +28,8 @@ namespace Employee_Managment
 
             builder.Services.AddAuthorization(options =>
             {
-                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
-                options.AddPolicy("Employee", policy => policy.RequireClaim("Employee"));
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("Employee", policy => policy.RequireRole("Employee"));
             });
 
             var app = builder.Build();

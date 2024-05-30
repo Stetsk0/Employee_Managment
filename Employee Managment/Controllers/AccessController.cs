@@ -26,31 +26,32 @@ namespace Employee_Managment.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Login modelLogin)
         {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToPage(nameof(Login));
-            }
-
-            // Пошук співробітника за ім'ям користувача
+            //Пошук співробітника за ім'ям користувача
             var employee = await _context.Employees
                 .Include(e => e.Credentials)
                 .FirstOrDefaultAsync(x => x.Credentials!.UserName == modelLogin.Credential.UserName);
 
+            // 1. Перевірка облікових даних співробітника
             if (employee != null && PasswordHasher.VerifyPassword(modelLogin.Credential.Password, employee.Credentials!.Password))
             {
+                // 2. Створення заяв
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, employee.Name),
                     new Claim(ClaimTypes.Role, "Employee"),
                     new Claim("EmployeeId", employee.Id.ToString()),
-                    new Claim("Employee", "Employee")
                 };
 
+                // 3. Створення особи на основі заяв
                 ClaimsIdentity identity = new ClaimsIdentity(claims, "CookieAuth");
+
+                // 4. Створення об'єкта ClaimsPrincipal для представлення користувача
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
+                // 5. Аутентифікація користувача за допомогою збереження інформації в cookie
                 await HttpContext.SignInAsync("CookieAuth", claimsPrincipal);
 
+                // 6. Перенаправлення користувача після успішної аутентифікації
                 return RedirectToAction("Index", "Home");
             }
 
@@ -64,7 +65,6 @@ namespace Employee_Managment.Controllers
                 {
                     new Claim(ClaimTypes.Name, "Admin"),
                     new Claim(ClaimTypes.Role, "Admin"),
-                    new Claim("Admin", "Admin")
                 };
 
                 ClaimsIdentity identity = new ClaimsIdentity(claims, "CookieAuth");

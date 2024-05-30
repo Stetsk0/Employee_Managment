@@ -5,7 +5,7 @@
 }
 @if(User.IsInRole("Admin"))
 {
-<h2>@employee!.Name</h2>
+<h2>Список відпусток</h2>
 
 <table class="table">
     <thead>
@@ -38,7 +38,7 @@
 {
     @if (Model != null && Model.Any())
     {
-    <h2>@employee!.Name</h2>
+        <h2>Список відпусток</h2>
     <table class="table">
         <thead>
             <tr>
@@ -61,6 +61,6 @@
     }
     else
     {
-        <h1>Відпусток немає</h1>
+        <h2>Відпусток немає</h2>
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Managment.Controllers
 {
-    [Authorize(Policy = "Employee")]
+    [Authorize(Roles = "Employee")]
     public class DashboardController : Controller
     {
         private readonly StatisticsRepository _statisticsRepository;

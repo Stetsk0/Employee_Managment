@@ -30,7 +30,7 @@ namespace Employee_Managment.Controllers
 
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(int employeeId)
         {
             var employee = _employeesRepository.GetEmployeeById(employeeId);
@@ -40,7 +40,7 @@ namespace Employee_Managment.Controllers
             return View(vacation);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Vacation vacation)
@@ -53,7 +53,7 @@ namespace Employee_Managment.Controllers
             return View(vacation);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var vacation = _vacationsRepository.GetVacationById(id);
@@ -62,6 +62,7 @@ namespace Employee_Managment.Controllers
             return View(vacation);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Vacation vacation)
@@ -74,6 +75,7 @@ namespace Employee_Managment.Controllers
             return View(vacation);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var vacation = _vacationsRepository.GetVacationById(id);
@@ -82,6 +84,7 @@ namespace Employee_Managment.Controllers
             return View(vacation);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

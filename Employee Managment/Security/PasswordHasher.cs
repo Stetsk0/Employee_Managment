@@ -9,6 +9,7 @@
 
         public static bool VerifyPassword(string enteredPassword, string storedHash)
         {
+            if (enteredPassword == null) { return false; }
             return BCrypt.Net.BCrypt.Verify(enteredPassword, storedHash);
         }
     }
