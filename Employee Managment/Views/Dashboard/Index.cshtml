@@ -21,33 +21,33 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Зарплата</td>
+                        <td><i class="fa-solid fa-dollar-sign fa-lg"></i> Зарплата</td>
                         <td>@employeeStats.Salary</td>
                         <td>@averageStats.Salary</td>
                     </tr>
                     <tr>
-                        <td>QA</td>
+                        <td><i class="fa-solid fa-ranking-star fa-lg"></i> QA</td>
                         <td>@employeeStats.QA</td>
                         <td>@averageStats.QA</td>
                     </tr>
                     <tr>
-                        <td>Бонуси</td>
+                        <td><i class="fa-solid fa-money-bill-trend-up fa-lg"></i> Бонуси</td>
                         <td>@employeeStats.Bonus</td>
                         <td>@averageStats.Bonus</td>
                     </tr>
                     <tr>
-                        <td>Кількість відпрацьованих годин</td>
+                        <td><i class="fa-solid fa-clock fa-lg"></i> Кількість відпрацьованих годин</td>
                         <td>@employeeStats.HoursWorked</td>
                         <td>@averageStats.HoursWorked</td>
                     </tr>
 
                     <tr>
-                        <td>Кількість виконаних завдань</td>
+                        <td><i class="fa-solid fa-list-check fa-lg"></i> Кількість виконаних завдань</td>
                         <td>@employeeStats.CompletedTasks</td>
                         <td>@averageStats.CompletedTasks</td>
                     </tr>
                     <tr>
-                        <td>Середній час виконання завдання</td>
+                        <td><i class="fa-solid fa-hourglass-end fa-lg"></i> Середній час виконання завдання</td>
                         <td>@employeeStats.AverageTaskCompletionTime</td>
                         <td>@averageStats.AverageTaskCompletionTime</td>
                     </tr>
@@ -58,14 +58,11 @@
             <canvas id="chartDepartmentSalary" width="400" height="200"></canvas></div>
         </div>
         
-        
         <div class="col-md-6 mx-auto row">
             <h4 class="d-flex justify-content-center">QA</h4>
             <canvas id="chartQA" width="200" height="100"></canvas>
             <h4 class="d-flex justify-content-center">Завдання</h4>
             <canvas id="chartTasks" width="400" height="200"></canvas>
-
-            
         </div>
     </div>
 </div>

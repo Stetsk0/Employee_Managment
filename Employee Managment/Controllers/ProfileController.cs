@@ -46,7 +46,6 @@ namespace Employee_Managment.Controllers
                     await avatar.CopyToAsync(fileStream);
                 }
 
-                // Удаление старого аватара, если он существует
                 if (!string.IsNullOrEmpty(employee.AvatarFileName))
                 {
                     var oldFilePath = Path.Combine(uploadsFolder, employee.AvatarFileName);

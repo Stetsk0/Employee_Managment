@@ -26,15 +26,12 @@ namespace Employee_Managment.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Login modelLogin)
         {
-            //Пошук співробітника за ім'ям користувача
             var employee = await _context.Employees
                 .Include(e => e.Credentials)
                 .FirstOrDefaultAsync(x => x.Credentials!.UserName == modelLogin.Credential.UserName);
 
-            // 1. Перевірка облікових даних співробітника
             if (employee != null && PasswordHasher.VerifyPassword(modelLogin.Credential.Password, employee.Credentials!.Password))
             {
-                // 2. Створення заяв
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, employee.Name),
@@ -42,20 +39,15 @@ namespace Employee_Managment.Controllers
                     new Claim("EmployeeId", employee.Id.ToString()),
                 };
 
-                // 3. Створення особи на основі заяв
                 ClaimsIdentity identity = new ClaimsIdentity(claims, "CookieAuth");
 
-                // 4. Створення об'єкта ClaimsPrincipal для представлення користувача
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
-                // 5. Аутентифікація користувача за допомогою збереження інформації в cookie
                 await HttpContext.SignInAsync("CookieAuth", claimsPrincipal);
 
-                // 6. Перенаправлення користувача після успішної аутентифікації
                 return RedirectToAction("Index", "Home");
             }
 
-            // Перевірка облікових даних адміністратора
             var adminPassword = _config.GetValue<string>("Admin:Password");
             var adminLogin = _config.GetValue<string>("Admin:UserName");
 

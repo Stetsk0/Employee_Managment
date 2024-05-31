@@ -15,7 +15,6 @@ namespace Employee_Managment.Models
         [Display(Name = "Опис")]
         public string? Description { get; set; }
 
-        // Внешний ключ к Employee
         public Employee? Employee { get; set; }
         public int EmployeeId { get; set; }
     }
